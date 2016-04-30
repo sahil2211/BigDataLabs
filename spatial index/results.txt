@@ -1,0 +1,39 @@
+SQL
+Ans 2. Result size includes  13979 dropoff points
+		Query time: 18.72 sec
+		
+Ans 3. Result size includes 21437 dropoff points.
+		Query time:18.01 sec
+
+Ans 4. Result size includes 13979 dropoff points
+		Query time: 6.93 sec
+Ans 5. Result size includes 21437 dropoff points.
+		Query time: 6.85 sec
+		
+		
+Python
+Ans 2.	query time for jfk is 19.954125 seconds
+		Total points in the polygon of JFK is 13979
+Ans 3. 	query time for LGA is 16.047347 seconds
+		Total points in the polygon of LGA is 21437
+Ans 4. 	Rtree JFK Query result
+			query time for jfk is 0.018939 seconds
+			Total points in the polygon of JFK is 14607
+Ans 5.  Rtree LGA Query result
+			query time for LGA is 0.022015 seconds
+			Total points in the polygon of LGA is 27475
+Ans 6   The difference between simple SQL query and the one by using spatial index is that spatial index in sql using btree so it takes log(n) time to
+		find the points.
+		For Python. in question 2 and 3 we simply iterate over all points and find out if each individual point is contained in the specified polygon.
+		This takes around O(n) for each dropoff location.
+		
+		For Rtree 
+		The key idea of the data structure is to group nearby objects and represent them with their minimum bounding rectangle in the next higher level 
+		of the tree; the "R" in R-tree is for rectangle. Since all objects lie within this bounding rectangle, a query that does not intersect the bounding 
+		rectangle also cannot intersect any of the contained objects. At the leaf level, each rectangle describes a single object; at higher levels the 
+		aggregation of an increasing number of objects. This can also be seen as an increasingly coarse approximation of the data set.
+		Similar to the B-tree, the R-tree is also a balanced search tree (so all leaf nodes are at the same height), organizes the data in ges, and is 
+		designed for storage on disk (as used in databases). 
+		The key difficulty of R-trees is to build an efficient tree that on one hand is balanced (so the leaf nodes are at the same height) on the other 
+		hand the rectangles do not cover too much empty space and do not overlap too much (so that during search, fewer subtrees need to be processed). 
+		As a result the search takes logarithmic time for each dropoff location as compared to O(n) in simple polygon search.
